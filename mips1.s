@@ -1,13 +1,17 @@
 .data
-space: .asciiz "\n" 
-input: .asciiz "Enter the string: "
-input_string: .space 1000 #space for 1000 characters has been allocated, and the main program has been started.
+space:        .asciiz "\n"    # Newline character for output
+input_string:   .space 1001     # To store user input
+prompt:         .asciiz "Enter a string: "    # Prompt message
+
 
 .text
-.globl main
-main: 
-	li $v0, 8 #taking user input for strings
-	la $a0, input_string 
-	li $a1, 1001
-	syscall
+main:
+    li $v0, 4                   # System call code for print string
+    la $a0, prompt              # Load address of input prompt message
+    syscall                  
 
+    # Read user input
+    li $v0, 8                   
+    la $a0, input_string       # Load address of input string
+    li $a1, 1000                
+    syscall                     
