@@ -31,4 +31,10 @@ loop:
 	lb $t0, 0($s0) 	#load byte from input string
 	beqz $t2, $t3, end_loop	#if it reaches the end of the input string, loop ends
 	
-	
+	addi $s0, $s0, 1
+	j loop 
+
+end_loop:
+	li $v0,1
+	move $a0, $t1
+	syscall
