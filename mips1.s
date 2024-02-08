@@ -24,17 +24,20 @@ main:
 
 process_whole_string:
 	move $s0, $a0
-
+	li $t0, 0
+	li $t1, 0
 
 
 loop:
-	lb $t0, 0($s0) 	#load byte from input string
-	beqz $t2, $t3, end_loop	#if it reaches the end of the input string, loop ends
+	lb $t2, 0($s0) 	#load byte from input string
+	beqz $t2, end_loop	#if it reaches the end of the input string loop ends
 	
+	add $t0, $t0, $t1
+
 	addi $s0, $s0, 1
-	j loop 
+	j loop	
 
 end_loop:
 	li $v0,1
-	move $a0, $t1
+	move $a0, $t0
 	syscall
