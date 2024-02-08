@@ -25,17 +25,21 @@ main:
 process_whole_string:
 	move $s0, $a0
 	li $t0, 0
-	li $t1, 0
+
 
 
 loop:
-	lb $t2, 0($s0) 	#load byte from input string
-	beqz $t2, end_loop	#if it reaches the end of the input string loop ends
+	lb $t1, 0($s0) 	#load byte from input string
+	beqz $t1, end_loop	#if it reaches the end of the input string loop ends
 	
-	add $t0, $t0, $t1
+	li $t2, 48
+	blt $t1, $t2, not_integer
+	li $t2, 57
+	but $t1, $t2, not_integer
 
-	addi $s0, $s0, 1
-	j loop	
+	sub $t1, $t1, 48
+	add $t0, $t0, not_integer
+ 	
 
 end_loop:
 	li $v0,1
