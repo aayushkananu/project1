@@ -35,10 +35,15 @@ loop:
 	li $t2, 48
 	blt $t1, $t2, not_integer
 	li $t2, 57
-	but $t1, $t2, not_integer
+	bgt $t1, $t2, not_integer
 
 	sub $t1, $t1, 48
-	add $t0, $t0, not_integer
+	add $t0, $t0, $t1
+
+not_integer:
+	addi $s0, $s0, 1
+	j loop
+
  	
 
 end_loop:
