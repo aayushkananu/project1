@@ -8,4 +8,6 @@ input_string: .space 1000 #space for 1000 characters has been allocated, and the
 main: 
 	li $v0, 8 #taking user input for strings
 	la $a0, input_string 
+	li $a1, 1001
+	syscall
 
