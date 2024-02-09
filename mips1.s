@@ -1,4 +1,4 @@
-# X = 03086745, N = 26 + (X % 11) = 28, M = N-10 =18
+# X = 03086745, N = 26 + (X % 11) = 28, M = N-10 =18, 27
 .data
 space:        .asciiz "\n"    # Newline character for output
 input_string:   .space 1001     # To store user input
@@ -50,3 +50,4 @@ end_loop:
 	li $v0,1
 	move $a0, $t0
 	syscall
+
