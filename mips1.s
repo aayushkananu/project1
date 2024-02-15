@@ -35,15 +35,15 @@ loop:
     blt $t1, $t2, check_alphabet # if the ascii value is less than 48 it isn't a number so check if it is alphabet 
     bgt $t1, $t3, check_alphabet # if ascii value is greater than 57 it isn't a number so check if it is alphabet
 
-    
+   
     sub $t1, $t1, 48           
     add $t0, $t0, $t1          
     j next_character      # jump to another character     
 
 check_alphabet:
-    li $t2, 65                  
-    li $t3, 114                 
-    blt $t1, $t2, invalid_char  
+    li $t2, 65      #ascii value of capital a loaded to $t2           
+    li $t3, 114     #ascii value of small r loaded           
+    blt $t1, $t2, invalid_char  #if ascii value is less so check in another label
     bgt $t1, $t3, after_r       
 
     # Convert lowercase to uppercase
@@ -57,7 +57,7 @@ check_alphabet:
     j next_character         
 
 to_uppercase:
-    addi $t1, $t1, -32          
+    addi $t1, $t1, -32    #subtract 32 to get   
     j check_alphabet           
 
 after_r:
