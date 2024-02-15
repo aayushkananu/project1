@@ -26,19 +26,19 @@ process_whole_string:
     li $t0, 0                   #initialize $t0 to 0
 
 loop:
-    lb $t1, 0($s0)              
-    beqz $t1, end_loop          # if it reaches the end of the input string, end loop
+    lb $t1, 0($s0)              #load the first byte from $s0
+    beqz $t1, end_loop          # if it reaches the end of the input string, end_loop is called
 
  
     li $t2, 48                 
     li $t3, 57                  
-    blt $t1, $t2, check_alphabet 
-    bgt $t1, $t3, check_alphabet 
+    blt $t1, $t2, check_alphabet # if the ascii value is less than 48 it isn't a number so check if it is alphabet 
+    bgt $t1, $t3, check_alphabet # if ascii value is greater than 57 it isn't a number so check if it is alphabet
 
     
     sub $t1, $t1, 48           
     add $t0, $t0, $t1          
-    j next_character           
+    j next_character      # jump to another character     
 
 check_alphabet:
     li $t2, 65                  
