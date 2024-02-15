@@ -69,16 +69,25 @@ after_r:
     add $t0, $t0, $t1     
     j next_character            #jump to process the next character
 
+invalid_char:
+    j next_character            # jump to process the next character
+
 next_character:
     addi $s0, $s0, 1           
     j loop                     
 
 end_loop:
-    # Print the sum
+    beq $t0, $zero, hyphen
     li $v0, 1                  
     move $a0, $t0              
-    syscall                      # Return to the calling function
+    syscall                      #return to the calling function
 
-invalid_char:
-   
-    j next_character            # jump to process the next character
+
+hyphen:
+    li $v0, 11
+    li  $a0, 45 
+    syscall
+
+end_program:
+    li $v0, 10
+    syscall 
